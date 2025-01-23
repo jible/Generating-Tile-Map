@@ -16,10 +16,13 @@ function resizeScreen() {
   console.log("Resizing...");
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
   // redrawCanvas(); // Redraw everything based on new size
-}
 
-function resizeAsciiBox() {
-
+  $(".asciiBox").height(
+    $("canvas").height() - parseInt($(".asciiBox").css("padding")) * 2
+  );
+  $(".asciiBox").width(
+    $("canvas").width() - parseInt($(".asciiBox").css("padding")) * 2
+  );
 }
 
 function gridToString(grid) {
@@ -50,9 +53,7 @@ function setup() {
   canvasContainer = $("#canvas-container");
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
   canvas.parent("canvas-container");
-  // resize canvas is the page is resized
 
-  $(".ascii-box").height()
 
   $(window).resize(function () {
     resizeScreen();
