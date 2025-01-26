@@ -70,11 +70,10 @@ class World{
       this.width = width
       this.height = height
 
-
       this.matrix = []
-      for (let i = 0; i < this.width; i++){
+      for (let i = 0; i < this.height; i++){
         this.matrix[i] = []
-        for (let j = 0; j < this.height; j++){
+        for (let j = 0; j < this.width; j++){
             this.matrix[i][j] = 0
         }
       }
@@ -82,26 +81,29 @@ class World{
     }
 
 
-    render(){
-        for (let y = 0; y < this.height; y++) {
-            let row = [];
-            for (let x = 0; x < this.width; x++) {
-                row.push(this.matrix[x][y]); // Access transposed elements
+    grid_to_string(){
+        let output = ''
+        console.log(this.height)
+        for (let y = 0; y < this.height; y++){
+            for (let x = 0; x < this.width; x++){
+                output += `${this.matrix[y][x]} `
             }
-            console.log(row.join(' '));
+            output += '\n'
         }
+        console.log(output)
+        return output
     }
 
     getValue(pos){
-        return this.matrix[pos.x][pos.y]
+        return this.matrix[pos.y][pos.y]
     }
 
     setValue(pos,value = 0){
-        this.matrix[pos.x][pos.y] = value
+        this.matrix[pos.y][pos.x] = value
     }
 
     incrementValue(pos,add){
-        this.matrix[pos.x][pos.y] += add
+        this.matrix[pos.y][pos.x] += add
     }
 
     genMethodDrop(max,drops,life){

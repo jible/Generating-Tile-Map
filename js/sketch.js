@@ -61,8 +61,7 @@ function setup() {
   resizeScreen();
 
   let world = new World(10,10)
-  world.genMethodDrop(100,1000,2)
-  world.render()
+  world.grid_to_string()
 
   renderWorld(world);
 
@@ -85,24 +84,24 @@ function renderWorld(world) {
 }
 
 // // draw() function is called repeatedly, it's the main animation loop
-// function draw() {
-//   background(220);
+function draw() {
+  // background(220);
 
-//   // Set up rotation for the rectangle
-//   push(); // Save the current drawing context
-//   translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-//   rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-//   fill(234, 31, 81);
-//   noStroke();
-//   rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-//   pop(); // Restore the original drawing context
+  // Set up rotation for the rectangle
+  // push(); // Save the current drawing context
+  // translate(centerHorz, centerVert); // Move the origin to the rectangle's center
+  // rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
+  // fill(234, 31, 81);
+  // noStroke();
+  // rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
+  // pop(); // Restore the original drawing context
 
-//   // The text is not affected by the translate and rotate
-//   fill(255);
-//   textStyle(BOLD);
-//   textSize(140);
-//   text("p5*", centerHorz - 105, centerVert + 40);
-// }
+  // // The text is not affected by the translate and rotate
+  // fill(255);
+  // textStyle(BOLD);
+  // textSize(140);
+  // text("p5*", centerHorz - 105, centerVert + 40);
+}
 
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
