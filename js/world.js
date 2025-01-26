@@ -81,6 +81,20 @@ class World{
     }
 
 
+    string_to_grid(input){
+        let rows = input.split("\n")
+        for (let i = 0 ; i <rows.length; i++){
+            rows[i] = rows[i].split(" ")
+        }
+
+        for ( let i = 0; i < rows.length; i++){
+            for (let j = 0; j < rows[i].length; j++){
+                matrix[i][j] = rows[i][j]
+            }
+        }
+
+    }
+
     grid_to_string(){
         let output = ''
         console.log(this.height)
