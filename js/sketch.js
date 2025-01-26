@@ -59,27 +59,50 @@ function setup() {
     resizeScreen();
   });
   resizeScreen();
+
+  let world = new World(10,10)
+  world.genMethodDrop(500,1000,2)
+  world.render()
+
+  renderWorld(world);
+
 }
 
-// draw() function is called repeatedly, it's the main animation loop
-function draw() {
-  background(220);
+function renderWorld(world) {
+  const tileWidth = width / world.width; // Width of each tile
+  const tileHeight = height / world.height; // Height of each tile
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
+  for (let x = 0; x < world.width; x++) {
+    for (let y = 0; y < world.height; y++) {
+      const value = world.getValue(new Vector2(x, y)); // Get the matrix value
+      const shade = map(value, 0, 500, 255, 0); // Map the value to a shade (0 = black, 255 = white)
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+      fill(shade);
+      noStroke();
+      rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight); // Draw the tile
+    }
+  }
 }
+
+// // draw() function is called repeatedly, it's the main animation loop
+// function draw() {
+//   background(220);
+
+//   // Set up rotation for the rectangle
+//   push(); // Save the current drawing context
+//   translate(centerHorz, centerVert); // Move the origin to the rectangle's center
+//   rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
+//   fill(234, 31, 81);
+//   noStroke();
+//   rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
+//   pop(); // Restore the original drawing context
+
+//   // The text is not affected by the translate and rotate
+//   fill(255);
+//   textStyle(BOLD);
+//   textSize(140);
+//   text("p5*", centerHorz - 105, centerVert + 40);
+// }
 
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
