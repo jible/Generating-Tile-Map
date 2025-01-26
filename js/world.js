@@ -95,7 +95,7 @@ class World{
     }
 
     getValue(pos){
-        return this.matrix[pos.y][pos.y]
+        return this.matrix[pos.y][pos.x]
     }
 
     setValue(pos,value = 0){

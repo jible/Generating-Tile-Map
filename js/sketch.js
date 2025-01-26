@@ -61,10 +61,8 @@ function setup() {
   resizeScreen();
 
   let world = new World(10,10)
-  world.genMethodDrop(100,1000,10)
-  console.log(world.grid_to_string())
-  // world.grid_to_string()
-
+  world.grid_to_string()
+  world.genMethodDrop(100,50,25)
   renderWorld(world);
 
 }
@@ -78,8 +76,8 @@ function renderWorld(world) {
   const tileWidth = width / world.width; // Width of each tile
   const tileHeight = height / world.height; // Height of each tile
 
-  for (let x = 0; x < world.width; x++) {
-    for (let y = 0; y < world.height; y++) {
+  for (let y = 0; y < world.height; y++) {
+    for (let x = 0; x < world.width; x++) {
       const value = world.getValue(new Vector2(x, y)); // Get the matrix value
       const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
 
