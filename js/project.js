@@ -16,11 +16,20 @@ class MyProjectClass {
     this.property2 = param2;
   }
   
+  // What details do I need?
+  // Matrix/Grid
+  // Grid Size
+  // Togglable Paramaters
+
+
   // define a method
   myMethod() {
     // code to run when method is called
   }
 }
+
+
+
 
 function main() {
   // create an instance of the class
@@ -31,4 +40,4 @@ function main() {
 }
 
 // let's get this party started - uncomment me
-//main();
+main();
