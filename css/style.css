@@ -18,7 +18,7 @@ body {
   height: 600px;
 }
 
-.asciiBox {
+#asciiBox {
   resize: none;
   overflow: hidden;
   text-align: center;

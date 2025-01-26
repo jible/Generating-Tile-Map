@@ -17,11 +17,11 @@ function resizeScreen() {
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
   // redrawCanvas(); // Redraw everything based on new size
 
-  $(".asciiBox").height(
-    $("canvas").height() - parseInt($(".asciiBox").css("padding")) * 2
+  $("#asciiBox").height(
+    $("canvas").height() - parseInt($("#asciiBox").css("padding")) * 2
   );
-  $(".asciiBox").width(
-    $("canvas").width() - parseInt($(".asciiBox").css("padding")) * 2
+  $("#asciiBox").width(
+    $("canvas").width() - parseInt($("#asciiBox").css("padding")) * 2
   );
 }
 
@@ -64,12 +64,12 @@ function setup() {
   world.grid_to_string()
   world.genMethodDrop(100,50,25)
   renderWorld(world);
+  document.getElementById("asciiBox").value = world.grid_to_string();
 
 }
 
 function draw() {
   renderWorld(world);
-  $(".asciiText").text(world.grid_to_string())
 }
 
 function renderWorld(world) {
