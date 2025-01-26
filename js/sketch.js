@@ -9,6 +9,7 @@ var centerHorz, centerVert;
 let numRows = 10;
 let numCols = 10;
 var tileSize = 16;
+let asciiBox = document.getElementById("asciiBox");
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -47,6 +48,8 @@ function stringToGrid(str) {
   return grid;
 }
 
+
+
 // setup() function is called once when the program starts
 function setup() {
   // place our canvas, making it fit our container
@@ -64,8 +67,12 @@ function setup() {
   world.grid_to_string()
   world.genMethodDrop(100,50,25)
   renderWorld(world);
-  document.getElementById("asciiBox").value = world.grid_to_string();
-
+  asciiBox.value = world.grid_to_string();
+  asciiBox.oninput = function () {
+    world.string_to_grid(asciiBox.value);
+    console.log("value changed");
+    renderWorld(world);
+  };
 }
 
 function draw() {
