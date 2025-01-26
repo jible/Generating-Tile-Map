@@ -31,7 +31,9 @@ class Drop{
     }
 
     tick(){
-        this.world.incrementValue(this.pos, -1)
+        if (this.world.getValue(this.pos) > 0){
+            this.world.incrementValue(this.pos, -1)
+        }
         this.life--
         if (this.life > 0){
             this.slide()

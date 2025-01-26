@@ -61,7 +61,7 @@ function setup() {
   resizeScreen();
 
   let world = new World(10,10)
-  world.genMethodDrop(500,1000,2)
+  world.genMethodDrop(100,1000,2)
   world.render()
 
   renderWorld(world);
@@ -75,7 +75,7 @@ function renderWorld(world) {
   for (let x = 0; x < world.width; x++) {
     for (let y = 0; y < world.height; y++) {
       const value = world.getValue(new Vector2(x, y)); // Get the matrix value
-      const shade = map(value, 0, 500, 255, 0); // Map the value to a shade (0 = black, 255 = white)
+      const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
 
       fill(shade);
       noStroke();
