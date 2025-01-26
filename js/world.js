@@ -83,13 +83,13 @@ class World{
 
     string_to_grid(input){
         let rows = input.split("\n")
-        for (let i = 0 ; i <rows.length; i++){
+        for (let i = 0 ; i < this.matrix.height; i++){
             rows[i] = rows[i].split(" ")
         }
 
-        for ( let i = 0; i < rows.length; i++){
-            for (let j = 0; j < rows[i].length; j++){
-                matrix[i][j] = rows[i][j]
+        for ( let i = 0; i < this.matrix.hieght; i++){
+            for (let j = 0; j < this.matrix.width; j++){
+                this.matrix[i][j] = rows[i][j]
             }
         }
 
