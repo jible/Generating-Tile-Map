@@ -61,10 +61,17 @@ function setup() {
   resizeScreen();
 
   let world = new World(10,10)
-  world.grid_to_string()
+  world.genMethodDrop(100,1000,10)
+  console.log(world.grid_to_string())
+  // world.grid_to_string()
 
   renderWorld(world);
 
+}
+
+function draw() {
+  renderWorld(world);
+  $(".asciiText").text(world.grid_to_string())
 }
 
 function renderWorld(world) {
