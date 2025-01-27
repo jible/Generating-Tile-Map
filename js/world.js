@@ -163,8 +163,20 @@ class World{
             for (let x = 0; x < world.width; x++) {
             const value = world.getValue(new Vector2(x, y)); // Get the matrix value
             const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
-
-            fill(shade);
+            
+            if (value > 60) {
+                fill(36, 32, 22);
+                
+            } else if (value > 56) {
+                fill(51, 46, 32);
+            }
+            else if (value > 38) {
+                fill(143, 134, 111);
+            } else if (value > 35) {
+                fill(51, 46, 32);
+            } else {
+                fill(36, 32, 22);
+            }
             noStroke();
             rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight); // Draw the tile
             }

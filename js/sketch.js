@@ -6,8 +6,8 @@
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
-let numRows = 20;
-let numCols = 20;
+let numRows = 200;
+let numCols = 200;
 var tileSize = 16;
 // let asciiBox = document.getElementById("asciiBox");
 let world;
