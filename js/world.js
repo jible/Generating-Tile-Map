@@ -127,7 +127,8 @@ class World{
         let noiseScale = 0.1 
         for (let x = 0; x < this.width; x++){
             for (let y = 0; y < this.height; y++){
-                this.matrix[x][y] = noise(x * noiseScale + adjust, y * noiseScale + adjust) * 100;
+                let noiseValue = noise(x * noiseScale + adjust, y * noiseScale + adjust)
+                this.matrix[x][y] = noiseValue//Math.pow(noiseValue, 2)
             }
         }
     }
@@ -164,15 +165,15 @@ class World{
             const value = world.getValue(new Vector2(x, y)); // Get the matrix value
             const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
             
-            if (value > 60) {
+            if (value > 0.60) {
                 fill(36, 32, 22);
                 
-            } else if (value > 56) {
+            } else if (value > 0.56) {
                 fill(51, 46, 32);
             }
-            else if (value > 38) {
+            else if (value > 0.38) {
                 fill(143, 134, 111);
-            } else if (value > 35) {
+            } else if (value > 0.35) {
                 fill(51, 46, 32);
             } else {
                 fill(36, 32, 22);
