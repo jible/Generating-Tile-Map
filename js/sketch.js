@@ -6,10 +6,11 @@
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
-let numRows = 10;
-let numCols = 10;
+let numRows = 20;
+let numCols = 20;
 var tileSize = 16;
-let asciiBox = document.getElementById("asciiBox");
+// let asciiBox = document.getElementById("asciiBox");
+let world;
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -18,12 +19,12 @@ function resizeScreen() {
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
   // redrawCanvas(); // Redraw everything based on new size
 
-  $("#asciiBox").height(
-    $("canvas").height() - parseInt($("#asciiBox").css("padding")) * 2
-  );
-  $("#asciiBox").width(
-    $("canvas").width() - parseInt($("#asciiBox").css("padding")) * 2
-  );
+  // $("#asciiBox").height(
+  //   $("canvas").height() - parseInt($("#asciiBox").css("padding")) * 2
+  // );
+  // $("#asciiBox").width(
+  //   $("canvas").width() - parseInt($("#asciiBox").css("padding")) * 2
+  // );
 }
 
 function gridToString(grid) {
@@ -63,56 +64,25 @@ function setup() {
   });
   resizeScreen();
 
-  let world = new World(10,10)
+  world = new World(numCols, numRows);
   world.grid_to_string()
-  world.genMethodDrop(100,50,25)
-  renderWorld(world);
-  asciiBox.value = world.grid_to_string();
-  asciiBox.oninput = function () {
-    world.string_to_grid(asciiBox.value);
-    console.log("value changed");
-    renderWorld(world);
-  };
+  // world.genMethodDrop(100,50,25)
+  world.generateNoise();
+  world.render();
+  // asciiBox.value = world.grid_to_string();
+
+  // asciiBox.oninput = function () {
+  //   world.string_to_grid(asciiBox.value);
+  //   console.log("value changed");
+  //   renderWorld(world);
+  // };
 }
 
+let adjust = 0
 function draw() {
-  renderWorld(world);
-}
-
-function renderWorld(world) {
-  const tileWidth = width / world.width; // Width of each tile
-  const tileHeight = height / world.height; // Height of each tile
-
-  for (let y = 0; y < world.height; y++) {
-    for (let x = 0; x < world.width; x++) {
-      const value = world.getValue(new Vector2(x, y)); // Get the matrix value
-      const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
-
-      fill(shade);
-      noStroke();
-      rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight); // Draw the tile
-    }
-  }
-}
-
-// // draw() function is called repeatedly, it's the main animation loop
-function draw() {
-  // background(220);
-
-  // Set up rotation for the rectangle
-  // push(); // Save the current drawing context
-  // translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  // rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  // fill(234, 31, 81);
-  // noStroke();
-  // rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  // pop(); // Restore the original drawing context
-
-  // // The text is not affected by the translate and rotate
-  // fill(255);
-  // textStyle(BOLD);
-  // textSize(140);
-  // text("p5*", centerHorz - 105, centerVert + 40);
+  adjust += 0.01;
+  world.generateNoise();
+  world.render();
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed

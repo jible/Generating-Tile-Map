@@ -74,7 +74,7 @@ class World{
       for (let i = 0; i < this.height; i++){
         this.matrix[i] = []
         for (let j = 0; j < this.width; j++){
-            this.matrix[i][j] = 0
+            this.matrix[i][j] = Math.floor(Math.random() * 100)
         }
       }
   
@@ -82,14 +82,17 @@ class World{
 
 
     string_to_grid(input){
+        console.log("string to grid")
         let rows = input.split("\n")
-        for (let i = 0 ; i < this.matrix.height; i++){
-            rows[i] = rows[i].split(" ")
-        }
+        rows.pop(); // adjust for last newline
+        console.log(rows)
 
-        for ( let i = 0; i < this.matrix.hieght; i++){
-            for (let j = 0; j < this.matrix.width; j++){
-                this.matrix[i][j] = rows[i][j]
+        for ( let i = 0; i < rows.length; i++){
+            let col = rows[i].split(" ");
+            col.pop(); // adjust for last space
+            for (let j = 0; j < col.length; j++){
+                console.log(this.matrix[i][j], col[j])
+                this.matrix[i][j] = col[j]
             }
         }
 
@@ -97,14 +100,14 @@ class World{
 
     grid_to_string(){
         let output = ''
-        console.log(this.height)
+        // console.log(this.height)
         for (let y = 0; y < this.height; y++){
             for (let x = 0; x < this.width; x++){
                 output += `${this.matrix[y][x]} `
             }
             output += '\n'
         }
-        console.log(output)
+        // console.log(output)
         return output
     }
 
@@ -118,6 +121,15 @@ class World{
 
     incrementValue(pos,add){
         this.matrix[pos.y][pos.x] += add
+    }
+
+    generateNoise(adjust = 0) {
+        let noiseScale = 0.1 
+        for (let x = 0; x < this.width; x++){
+            for (let y = 0; y < this.height; y++){
+                this.matrix[x][y] = noise(x * noiseScale + adjust, y * noiseScale + adjust) * 100;
+            }
+        }
     }
 
     genMethodDrop(max,drops,life){
@@ -141,8 +153,24 @@ class World{
             }
         }
     }
-  }
+  
 
+    render() {
+        const tileWidth = width / world.width; // Width of each tile
+        const tileHeight = height / world.height; // Height of each tile
+
+        for (let y = 0; y < world.height; y++) {
+            for (let x = 0; x < world.width; x++) {
+            const value = world.getValue(new Vector2(x, y)); // Get the matrix value
+            const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
+
+            fill(shade);
+            noStroke();
+            rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight); // Draw the tile
+            }
+        }
+    }
+}
 
 
 function getRandom(max){
