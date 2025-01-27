@@ -123,6 +123,89 @@ class World{
         this.matrix[pos.y][pos.x] += add
     }
 
+
+    cleanUp(){
+        let newMat = []
+        for (let y = 0; y < this.height; y++){
+            newMat[y] = []
+            for (let x = 0; x < this.width; x++){
+                newMat[y][x] = this.matrix[y][x]
+                let count = 0
+                if (this.matrix[x][y] < .35)
+                for (let i = -1; i <= 1; i++){
+                    for (let j = -1; j <=1; j++){
+                        let coord = new Vector2( x+i, y+j)
+                        if (coord.x < 0 || coord.x >= this.width || coord.y < 0 || coord.y >= this.height ){
+                            count++
+                        } else if ( this.matrix[y][x] <= .98){
+                            count  ++
+                        }
+                    }
+                }
+                if (count <= 3){
+                    newMat[y][x] = .5
+                } 
+
+            }
+        }
+
+        
+        for (let y = 0; y < this.height; y++){
+            for (let x = 0; x < this.width; x++){
+                this.matrix[y][x] = newMat[y][x]
+
+            }
+        }
+    }
+
+    averageSmooth(){
+        let newMat = []
+        for (let y = 0; y < this.height; y++){
+            newMat[y] = []
+            for (let x = 0; x < this.width; x++){
+                let total = 0
+                let count = 0
+                for (let i = -1; i <= 1; i++){
+                    for (let j = -1; j <=1; j++){
+                        let coord = new Vector2( x+i, y+j)
+                        if (coord.x < 0 || coord.x >= this.width || coord.y < 0 || coord.y >= this.height ){
+                            continue
+                        }
+                        total += this.matrix[coord.y][coord.x]
+                        count ++
+                    }
+                }
+                newMat[y][x] = total/count 
+            }
+        }
+         
+
+        for (let y = 0; y < this.height; y++){
+            for (let x = 0; x < this.width; x++){
+                this.matrix[y][x] = newMat[y][x]
+            }
+        }
+
+    }
+
+    generateRoundedArea(adjust = 0) {
+        let center = new Vector2(this.width/2, this.height/2)
+        let noiseScale = 0.1 
+        const maxDistance = Math.sqrt(center.x ** 2 + center.y ** 2);
+        for (let x = 0; x < this.width; x++){
+            for (let y = 0; y < this.height; y++){
+                let noiseValue = noise(x * noiseScale + adjust, y * noiseScale + adjust)
+
+                let distance = Math.sqrt((x-center.x) ** 2 + (y-center.y) ** 2)
+
+                let gradient = 1 - (distance/ maxDistance) * .6;
+
+                this.matrix[x][y] = noiseValue * gradient //Math.pow(noiseValue, 2)
+            }
+        }
+    }
+
+
     generateNoise(adjust = 0) {
         let noiseScale = 0.1 
         for (let x = 0; x < this.width; x++){
@@ -163,8 +246,7 @@ class World{
         for (let y = 0; y < world.height; y++) {
             for (let x = 0; x < world.width; x++) {
             const value = world.getValue(new Vector2(x, y)); // Get the matrix value
-            const shade = map(value, 0, 100, 255, 0); // Map the value to a shade (0 = black, 255 = white)
-            
+
             if (value > 0.60) {
                 fill(36, 32, 22);
                 

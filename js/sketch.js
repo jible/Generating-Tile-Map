@@ -5,7 +5,11 @@
 // Globals
 let myInstance;
 let canvasContainer;
+let regenButton = document.getElementById("regen");
+let cleanUpButton = document.getElementById("cleanUp");
+let smoothButton = document.getElementById("smooth");
 var centerHorz, centerVert;
+let adjust = 0;
 let numRows = 200;
 let numCols = 200;
 var tileSize = 16;
@@ -64,11 +68,23 @@ function setup() {
   });
   resizeScreen();
 
+  regenButton.addEventListener('click', ()=>{
+    adjust++
+    world.generateRoundedArea(adjust);
+  })
+
+  cleanUpButton.addEventListener('click', ()=>{
+    world.cleanUp();
+  })
+
+  smoothButton.addEventListener('click', ()=>{
+    world.averageSmooth()
+  })
+
   world = new World(numCols, numRows);
   world.grid_to_string()
   // world.genMethodDrop(100,50,25)
-  world.generateNoise();
-  world.render();
+  world.generateRoundedArea();
   // asciiBox.value = world.grid_to_string();
 
   // asciiBox.oninput = function () {
@@ -78,10 +94,7 @@ function setup() {
   // };
 }
 
-let adjust = 0
 function draw() {
-  adjust += 0.01;
-  world.generateNoise();
   world.render();
 }
 
