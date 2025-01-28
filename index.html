@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- This title is used for tabs and bookmarks -->
-    <title>Experiment X - Subject/Topic</title>
+    <title>Experiment 3 - Generative Methods</title>
 
     <!-- Use UTF character set, a good idea with any webpage -->
     <meta charset="UTF-8" />
@@ -11,6 +11,7 @@
 
     <!-- Include CSS file, including a site-wide CSS and for this particular page -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
 
     <!-- My scripts -->
     <script src="js/world.js"></script>
@@ -32,7 +33,7 @@
     <!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
     <main id="content">
       <section>
-        <h1>Experiment X - Subject/Topic</h1>
+        <h1>Experiment 3 - Generative Methods</h1>
 
         <div class="minor-section">
           <div class="outer-container">
@@ -43,7 +44,6 @@
               <textarea id="asciiBox"></textarea>
             </span> -->
             <div class="fullscreen-box">
-              <button id="fullscreen">Fullscreen</button>
               <button id="regen">Regenerate</button>
               <button id="cleanUp">Clean up</button>
               <button id="smooth">Smooth</button>
@@ -68,16 +68,14 @@
 
         <div class="minor-section">
           <h2>Reflection</h2>
-          <p>
-            Jaxon:
+          <p>Jaxon:
             This was a good experience working with a teammate I had not worked with before. Admittedly there was a lapse in communication early on which led to some stalling and delayed work, but after getting that resolved, we had a smooth rest of the working process. Because of scheduling, we did all of our work asynchronously via github source control, as we kind of took turns working on different sections at a time. We also made sure to keep in contact through discord and discuss design ideas in person and over call when possible.
             For specific work I did, I set up the initial website layout, including the string representation which we ended up scrapping, helped bug fix the grid renderer, set up the initial noise shapes and thresholds, and started some of the specific noise transformations. 
-
-            James:
+            </p>
+            <p>James:
             This was a super fun project! This was a great opportunity to get more comfortable with using noise to generate terrains. I had a really positive experience working with Jaxon. He was on top of communicating despite our conflicting schedules.
               For this project, I created our “grid” data type that stored the tile and their values. Using this, Jaxon created the noise-based generation method.. Building off of Jaxon’s method, I added the smoothing and clean up functions that made the space look less pixelated. Then, I added buttons to allow users to prompt these changes.
-
-          </p>
+            </p>
         </div>
       </section>
       <nav id="links" class="minor-section">
