@@ -111,8 +111,8 @@ class World {
         for (let x = 0; x < this.width; x++) {
         for (let y = 0; y < this.height; y++) {
             const distance = Math.sqrt((x - center.x) ** 2 + (y - center.y) ** 2);
-            const gradient = 1 /((distance / maxDistance) * 2);
-            this.matrix[x][y] = this.matrix[x][y] * gradient;
+            const gradient =  2 * distance/maxDistance;
+            this.matrix[x][y] = (this.matrix[x][y] * gradient);
         }
         }
     }
