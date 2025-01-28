@@ -83,10 +83,10 @@ function setup() {
 
   world = new World(numCols, numRows);
   world.grid_to_string()
-  // world.genMethodDrop(100,50,25)
-  world.generateRoundedArea();
+  // Drop method is slow and pretty bad for producing what we want
+  // world.genMethodDrop(500, 80000, 100);
   // asciiBox.value = world.grid_to_string();
-
+  world.generateRoundedArea()
   // asciiBox.oninput = function () {
   //   world.string_to_grid(asciiBox.value);
   //   console.log("value changed");

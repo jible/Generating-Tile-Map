@@ -227,7 +227,16 @@ class World{
             let drop = new Drop(this,life, dropPosition.dupe())
             drop.release()
         }
+
+        for (let y = 0; y < this.height; y++){
+            for (let x = 0; x< this.width; x++){
+
+                this.matrix[y][x] =this.matrix[y][x]/max
+            }
+        }
     }
+
+
 
 
     fillMatrix(value){
