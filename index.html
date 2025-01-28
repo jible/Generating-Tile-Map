@@ -54,19 +54,29 @@
 
         <div class="minor-section">
           <h2>Description</h2>
-          <p>What are you trying to acomplish with this experiment?</p>
+          <p> We are prototyping a world generator. We want to make a cave-like area for a 2D top down combat based game. Right now, we are just experimenting with different methods.</p>
         </div>
 
         <div class="minor-section">
           <h2>Technical</h2>
-          <p>Describe in detail what you did technically and how it works?</p>
+          <p>
+            Using noise with an added gradient, we can make this open area, surrounded by walls. Each tile uses its location and its seed to determine its value. Then it gains another ammount that directly relates to its distance from the center 
+            Then, you can use the smoothing method, which will change each tile's value to the average value of it and its neighboring tiles. Or, you can use the clean up function, which will set the value depending on how many of its neighbors increase the threshold. Though this
+            doesn't achieve the exact effect we were looking for, but it makes for some neat generations when used in combination with the smoothing method.
+          </p>
         </div>
 
         <div class="minor-section">
           <h2>Reflection</h2>
           <p>
-            Each person that worked on the code should reflect on the process,
-            the difficulties, and the successes of the experiment.
+            Jaxon:
+            This was a good experience working with a teammate I had not worked with before. Admittedly there was a lapse in communication early on which led to some stalling and delayed work, but after getting that resolved, we had a smooth rest of the working process. Because of scheduling, we did all of our work asynchronously via github source control, as we kind of took turns working on different sections at a time. We also made sure to keep in contact through discord and discuss design ideas in person and over call when possible.
+            For specific work I did, I set up the initial website layout, including the string representation which we ended up scrapping, helped bug fix the grid renderer, set up the initial noise shapes and thresholds, and started some of the specific noise transformations. 
+
+            James:
+            This was a super fun project! This was a great opportunity to get more comfortable with using noise to generate terrains. I had a really positive experience working with Jaxon. He was on top of communicating despite our conflicting schedules.
+              For this project, I created our “grid” data type that stored the tile and their values. Using this, Jaxon created the noise-based generation method.. Building off of Jaxon’s method, I added the smoothing and clean up functions that made the space look less pixelated. Then, I added buttons to allow users to prompt these changes.
+
           </p>
         </div>
       </section>
